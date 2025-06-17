@@ -1,0 +1,30 @@
+{
+    "environment": {
+        "browser": "chromium"
+    },
+    "context": {
+        "targets": [
+            {
+                "url": "https://google.com",
+                "name": "Google"
+            }
+        ]
+    },
+    "flow": [
+        {
+            "action": "Navigate",
+            "preJs": {
+                "inline": "console.log('Before step in browser!')"
+            },
+            "postJs": {
+                "inline": "window._navaStore.flow['pageTitle'] = document.title;"
+            },
+            "breakFlowOnError": true
+        },
+        {
+            "action": "log",
+            "message": "The page title captured via PreHostJs: {flow:pageTitle}",
+            "style": "bold green"
+        }
+    ]
+}
